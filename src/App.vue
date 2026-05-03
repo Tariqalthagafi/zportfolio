@@ -9,22 +9,38 @@
     <!-- التابات تحت الصورة -->
     <header class="tabs">
       <button 
-        :class="{ active: currentTab === 'contact' }"
-        @click="currentTab = 'contact'"
+        :class="{ active: currentTab === 'education' }"
+        @click="currentTab = 'education'"
       >
-        تواصل
+        المؤهلات
+      </button>
+
+      <button 
+        :class="{ active: currentTab === 'experience' }"
+        @click="currentTab = 'experience'"
+      >
+        الخبرات العملية
       </button>
 
       <button 
         :class="{ active: currentTab === 'work' }"
         @click="currentTab = 'work'"
       >
-        أعمالي
+        الأعمال
+      </button>
+
+      <button 
+        :class="{ active: currentTab === 'contact' }"
+        @click="currentTab = 'contact'"
+      >
+        تواصل
       </button>
     </header>
 
     <!-- المحتوى -->
     <main>
+      <Education v-if="currentTab === 'education'" />
+      <Experience v-if="currentTab === 'experience'" />
       <Work v-if="currentTab === 'work'" />
       <Contact v-if="currentTab === 'contact'" />
     </main>
@@ -34,10 +50,13 @@
 
 <script setup>
 import { ref } from 'vue'
+
 import Work from './components/Work.vue'
 import Contact from './components/Contact.vue'
+import Education from './components/Education.vue'
+import Experience from './components/Experience.vue'
 
-const currentTab = ref('work')
+const currentTab = ref('education')
 </script>
 
 <style scoped>
